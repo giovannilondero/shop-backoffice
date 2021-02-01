@@ -7,6 +7,9 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb-typescript',
+    'prettier/@typescript-eslint',
+    'prettier/react',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -17,11 +20,10 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.eslint.json',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-  ],
+  plugins: ['react', '@typescript-eslint'],
   rules: {
     'react/react-in-jsx-scope': 0,
+    'jsx-a11y/anchor-is-valid': 0,
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
   },
 };
