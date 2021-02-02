@@ -25,5 +25,6 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+    '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
   },
 };
