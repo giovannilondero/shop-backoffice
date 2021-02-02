@@ -5,7 +5,6 @@ export default async (
   req: NextApiRequest,
   res: NextApiResponse<StatsCategory[]>,
 ) => {
-  // TODO: page & elements
   const {
     query: { storeId },
   } = req;
