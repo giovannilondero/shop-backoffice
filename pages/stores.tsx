@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import StoreCard from '../components/StoreCard';
 import useStores from '../hooks/stores';
 
 export default function Stores() {
@@ -14,7 +15,7 @@ export default function Stores() {
 }
 
 function StoresContent() {
-  const { stores, isError, isLoading } = useStores();
+  const { data: stores, isError, isLoading } = useStores();
 
   if (isLoading) {
     return <strong>Loading...</strong>;
@@ -27,7 +28,7 @@ function StoresContent() {
   return (
     <main>
       {stores?.map((store) => (
-        <div key={store.id}>{store.id}</div>
+        <StoreCard key={store.id} store={store} />
       ))}
     </main>
   );
