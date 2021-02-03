@@ -6,6 +6,8 @@
     "*.ts",
     "pages/**/*.ts",
     "pages/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
     "domain/**/*.ts",
     "helpers/**/*.ts",
     "hooks/**/*.ts"
