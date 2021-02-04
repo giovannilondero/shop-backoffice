@@ -12,5 +12,4 @@ export default async (req: NextApiRequest, res: NextApiResponse<Product[]>) => {
   const responseJson = (await response.json()) as Product[];
 
   res.status(200).json(responseJson);
-  // res.status(200).json({ name: 'John Doe' });
 };

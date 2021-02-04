@@ -14,5 +14,4 @@ export default async (
   const responseJson = (await response.json()) as StatsCategory[];
 
   res.status(200).json(responseJson);
-  // res.status(200).json({ name: 'John Doe' });
 };

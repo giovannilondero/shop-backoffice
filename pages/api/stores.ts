@@ -8,5 +8,4 @@ export default async (req: NextApiRequest, res: NextApiResponse<Store[]>) => {
   const responseJson = (await response.json()) as Store[];
 
   res.status(200).json(responseJson);
-  // res.status(200).json({ name: 'John Doe' });
 };
