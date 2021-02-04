@@ -5,7 +5,7 @@ interface Product {
   data: ProductData;
 }
 
-interface ProductData {
+export interface ProductData {
   title: string;
   category: string;
   price: number;
