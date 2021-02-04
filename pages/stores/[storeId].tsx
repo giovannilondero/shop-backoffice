@@ -1,33 +1,37 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-// import useProducts from '../../hooks/products';
+import useProducts from '../../hooks/products';
 import useStore from '../../hooks/store';
 
 export default function StorePage() {
+  const router = useRouter();
+  const { storeId } = router.query;
+
   return (
     <>
       <Head>
-        <title> | Shop Backoffice</title>
+        <title key="title">Store | Shop Backoffice</title>
       </Head>
 
-      <StorePageContent />
+      {storeId ? (
+        <StorePageContent storeId={storeId as string} />
+      ) : (
+        <span>Loading...</span>
+      )}
     </>
   );
 }
 
-function StorePageContent() {
-  const router = useRouter();
-  const { storeId } = router.query;
+interface StorePageContentProps {
+  storeId: string;
+}
+
+function StorePageContent({ storeId }: StorePageContentProps) {
   const {
     data: store,
     isError: isStoreError,
     isLoading: isStoreLoading,
   } = useStore(storeId as string);
-  // const {
-  //   data: products,
-  //   isError: isProductsError,
-  //   isLoading: isProductsLoading,
-  // } = useProducts(storeId as string);
 
   if (isStoreLoading) {
     return <strong>Loading...</strong>;
@@ -37,5 +41,48 @@ function StorePageContent() {
     return <strong>Error!!!</strong>;
   }
 
-  return <main>{store?.name}</main>;
+  return (
+    <main>
+      {store?.name}
+      <ProductsList storeId={storeId as string} />
+    </main>
+  );
+}
+
+interface ProductsListProps {
+  storeId: string;
+}
+
+function ProductsList({ storeId }: ProductsListProps) {
+  const {
+    data: products,
+    isError: isProductsError,
+    isLoading: isProductsLoading,
+  } = useProducts(storeId);
+
+  if (isProductsLoading) {
+    return <strong>Loading...</strong>;
+  }
+
+  if (isProductsError) {
+    return <strong>Error!!!</strong>;
+  }
+
+  return (
+    <ul>
+      {products?.map((product) => (
+        <div key={product.id}>
+          {product.data.title}
+          <br />
+          {product.data.price}
+          <br />
+          {product.data.employee}
+          <br />
+          {product.data.category}
+          <br />
+          {product.data.description}
+        </div>
+      ))}
+    </ul>
+  );
 }
