@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useProducts from '../../src/hooks/products';
 import useStore from '../../src/hooks/store';
@@ -27,17 +28,13 @@ interface StorePageContentProps {
 }
 
 function StorePageContent({ storeId }: StorePageContentProps) {
-  const {
-    data: store,
-    isError: isStoreError,
-    isLoading: isStoreLoading,
-  } = useStore(storeId as string);
+  const { data: store, isError, isLoading } = useStore(storeId as string);
 
-  if (isStoreLoading) {
+  if (isLoading) {
     return <strong>Loading...</strong>;
   }
 
-  if (isStoreError) {
+  if (isError) {
     return <strong>Error!!!</strong>;
   }
 
@@ -60,34 +57,34 @@ interface ProductsListProps {
 }
 
 function ProductsList({ storeId }: ProductsListProps) {
-  const {
-    data: products,
-    isError: isProductsError,
-    isLoading: isProductsLoading,
-  } = useProducts(storeId);
+  const { data: products, isError, isLoading } = useProducts(storeId);
 
-  if (isProductsLoading) {
+  if (isLoading) {
     return <strong>Loading...</strong>;
   }
 
-  if (isProductsError) {
+  if (isError) {
     return <strong>Error!!!</strong>;
   }
 
   return (
     <ul>
       {products?.map((product) => (
-        <div key={product.id}>
-          {product.data.title}
-          <br />
-          {product.data.price}
-          <br />
-          {product.data.employee}
-          <br />
-          {product.data.category}
-          <br />
-          {product.data.description}
-        </div>
+        <li key={product.id}>
+          <Link href={`/stores/${storeId}/${product.id}`}>
+            <a>
+              {product.data.title}
+              <br />
+              {product.data.price}
+              <br />
+              {product.data.employee}
+              <br />
+              {product.data.category}
+              <br />
+              {product.data.description}
+            </a>
+          </Link>
+        </li>
       ))}
     </ul>
   );
