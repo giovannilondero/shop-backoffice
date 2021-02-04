@@ -42,10 +42,16 @@ function StorePageContent({ storeId }: StorePageContentProps) {
   }
 
   return (
-    <main>
-      {store?.name}
-      <ProductsList storeId={storeId as string} />
-    </main>
+    <>
+      <Head>
+        <title key="title">{store?.name} | Shop Backoffice</title>
+      </Head>
+
+      <main>
+        {store?.name}
+        <ProductsList storeId={storeId as string} />
+      </main>
+    </>
   );
 }
 
