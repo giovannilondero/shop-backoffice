@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import Product from '../../../../../domain/product';
+import Product from '../../../../../src/domain/product';
 
 export default async (req: NextApiRequest, res: NextApiResponse<Product>) => {
   const {

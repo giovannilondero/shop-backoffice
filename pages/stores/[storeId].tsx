@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import useProducts from '../../hooks/products';
-import useStore from '../../hooks/store';
+import useProducts from '../../src/hooks/products';
+import useStore from '../../src/hooks/store';
 
 export default function StorePage() {
   const router = useRouter();

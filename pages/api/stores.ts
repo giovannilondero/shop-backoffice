@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import Store from '../../domain/store';
+import Store from '../../src/domain/store';
 
 export default async (req: NextApiRequest, res: NextApiResponse<Store[]>) => {
   const response = await fetch(

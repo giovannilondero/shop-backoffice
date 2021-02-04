@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import StatsCategory from '../../../../../domain/stats_category';
+import StatsCategory from '../../../../../src/domain/stats_category';
 
 export default async (
   req: NextApiRequest,

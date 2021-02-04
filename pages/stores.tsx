@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import StoreCard from '../components/StoreCard';
-import useStores from '../hooks/stores';
+import StoreCard from '../src/components/StoreCard';
+import useStores from '../src/hooks/stores';
 
 export default function StoresPage() {
   return (
