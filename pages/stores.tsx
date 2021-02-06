@@ -1,4 +1,6 @@
+import { CircularProgress } from '@material-ui/core';
 import Head from 'next/head';
+import Center from '../src/components/Center';
 import StoreCard from '../src/components/StoreCard';
 import useStores from '../src/hooks/stores';
 
@@ -18,7 +20,11 @@ function StoresPageContent() {
   const { data: stores, isError, isLoading } = useStores();
 
   if (isLoading) {
-    return <strong>Loading...</strong>;
+    return (
+      <Center>
+        <CircularProgress />
+      </Center>
+    );
   }
 
   if (isError) {
