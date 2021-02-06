@@ -1,6 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import CenterProgressIndicator from '../../src/components/CenterProgressIndicator';
+
+import PageTitle from '../../src/components/PageTitle';
 import useProducts from '../../src/hooks/products';
 import useStore from '../../src/hooks/store';
 
@@ -31,7 +34,7 @@ function StorePageContent({ storeId }: StorePageContentProps) {
   const { data: store, isError, isLoading } = useStore(storeId as string);
 
   if (isLoading) {
-    return <strong>Loading...</strong>;
+    return <CenterProgressIndicator />;
   }
 
   if (isError) {
@@ -45,7 +48,7 @@ function StorePageContent({ storeId }: StorePageContentProps) {
       </Head>
 
       <main>
-        {store?.name}
+        <PageTitle>{store?.name}</PageTitle>
         <ProductsList storeId={storeId as string} />
       </main>
     </>
@@ -60,7 +63,7 @@ function ProductsList({ storeId }: ProductsListProps) {
   const { data: products, isError, isLoading } = useProducts(storeId);
 
   if (isLoading) {
-    return <strong>Loading...</strong>;
+    return <CenterProgressIndicator />;
   }
 
   if (isError) {

@@ -1,9 +1,8 @@
-import { CircularProgress } from '@material-ui/core';
 import Head from 'next/head';
-import Center from '../src/components/Center';
 import StoreCard from '../src/components/StoreCard';
 import PageTitle from '../src/components/PageTitle';
 import useStores from '../src/hooks/stores';
+import CenterProgressIndicator from '../src/components/CenterProgressIndicator';
 
 export default function StoresPage() {
   return (
@@ -21,11 +20,7 @@ function StoresPageContent() {
   const { data: stores, isError, isLoading } = useStores();
 
   if (isLoading) {
-    return (
-      <Center>
-        <CircularProgress />
-      </Center>
-    );
+    return <CenterProgressIndicator />;
   }
 
   if (isError) {
