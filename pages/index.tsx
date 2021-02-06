@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { CircularProgress } from '@material-ui/core';
+import Center from '../src/components/Center';
 
 export default function Home() {
   const router = useRouter();
@@ -22,7 +24,9 @@ export default function Home() {
         />
       </Head>
 
-      <main>Loading...</main>
+      <Center>
+        <CircularProgress />
+      </Center>
     </div>
   );
 }
