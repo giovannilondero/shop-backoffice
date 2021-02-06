@@ -2,6 +2,7 @@ import { CircularProgress } from '@material-ui/core';
 import Head from 'next/head';
 import Center from '../src/components/Center';
 import StoreCard from '../src/components/StoreCard';
+import PageTitle from '../src/components/PageTitle';
 import useStores from '../src/hooks/stores';
 
 export default function StoresPage() {
@@ -33,6 +34,8 @@ function StoresPageContent() {
 
   return (
     <main>
+      <PageTitle>Stores</PageTitle>
+
       {stores?.map((store) => (
         <StoreCard key={store.id} store={store} to={`/stores/${store.id}`} />
       ))}

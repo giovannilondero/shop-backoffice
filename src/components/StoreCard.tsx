@@ -7,6 +7,7 @@ import {
   CardMedia,
   CardActions,
   makeStyles,
+  Typography,
 } from '@material-ui/core';
 import Link from 'next/link';
 import Store from '../domain/store';
@@ -43,8 +44,10 @@ export default function StoreCard({ store, to = '' }: StoreCardProps) {
         image="/images/store.svg"
         title="Store"
       />
-      <CardContent color="textSecondary" component="p">
-        Employees: {storeData.employees.join(', ')}
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          Employees: {storeData.employees.join(', ')}
+        </Typography>
       </CardContent>
       <CardActions>
         <Link href={to}>
