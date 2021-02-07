@@ -1,12 +1,14 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Alert from '@material-ui/lab/Alert';
+import { Box } from '@material-ui/core';
 import CenterProgressIndicator from '../../src/components/CenterProgressIndicator';
 import PageTitle from '../../src/components/PageTitle';
 import useStore from '../../src/hooks/store';
 import ProductsList from '../../src/components/products/ProductsList';
 import StoreDetails from '../../src/components/stores/StoreDetails';
 import StoreCategoriesChart from '../../src/components/stores/StoreCategoriesChart';
+import useCategories from '../../src/hooks/categories';
 
 export default function StorePage() {
   const router = useRouter();
@@ -32,7 +34,8 @@ interface StorePageContentProps {
 }
 
 function StorePageContent({ storeId }: StorePageContentProps) {
-  const { data: store, isError, isLoading } = useStore(storeId as string);
+  const { data: store, isError, isLoading } = useStore(storeId);
+  const { data: categories } = useCategories(storeId);
 
   if (isLoading) {
     return <CenterProgressIndicator />;
@@ -59,7 +62,11 @@ function StorePageContent({ storeId }: StorePageContentProps) {
       <main>
         <PageTitle>{store.name}</PageTitle>
         <StoreDetails store={store} />
-        <StoreCategoriesChart />
+        {categories && (
+          <Box mb={6}>
+            <StoreCategoriesChart statsCategories={categories} />
+          </Box>
+        )}
         <ProductsList storeId={storeId as string} />
       </main>
     </>
