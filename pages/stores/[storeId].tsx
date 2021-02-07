@@ -6,6 +6,7 @@ import PageTitle from '../../src/components/PageTitle';
 import useStore from '../../src/hooks/store';
 import ProductsList from '../../src/components/products/ProductsList';
 import StoreDetails from '../../src/components/stores/StoreDetails';
+import StoreCategoriesChart from '../../src/components/stores/StoreCategoriesChart';
 
 export default function StorePage() {
   const router = useRouter();
@@ -58,6 +59,7 @@ function StorePageContent({ storeId }: StorePageContentProps) {
       <main>
         <PageTitle>{store.name}</PageTitle>
         <StoreDetails store={store} />
+        <StoreCategoriesChart />
         <ProductsList storeId={storeId as string} />
       </main>
     </>

@@ -9,25 +9,18 @@ interface ProductCardListProps {
   onProductDelete: (product: Product) => void;
 }
 
-type LayoutGridColumnSpan = 4;
-type LayoutListColumnSpan = 12;
-
 export default function ProductCardList({
   products,
   onProductDelete,
 }: ProductCardListProps) {
-  const layoutGridColumnSpan: LayoutGridColumnSpan = 4;
-  const layoutListColumnSpan: LayoutListColumnSpan = 12;
-  const [columnSpan, setColumnSpan] = useState<
-    LayoutGridColumnSpan | LayoutListColumnSpan
-  >(layoutGridColumnSpan);
+  const [isListLayout, setListLayout] = useState(false);
 
   const setList = () => {
-    setColumnSpan(layoutListColumnSpan);
+    setListLayout(true);
   };
 
   const setGrid = () => {
-    setColumnSpan(layoutGridColumnSpan);
+    setListLayout(false);
   };
 
   return (
@@ -35,14 +28,14 @@ export default function ProductCardList({
       <Box mb={2}>
         <IconButton
           aria-label="Set list layout"
-          color={columnSpan === layoutListColumnSpan ? 'primary' : 'default'}
+          color={isListLayout ? 'primary' : 'default'}
           onClick={() => setList()}
         >
           <ViewList />
         </IconButton>
         <IconButton
           aria-label="Set grid layout"
-          color={columnSpan === layoutGridColumnSpan ? 'primary' : 'default'}
+          color={!isListLayout ? 'primary' : 'default'}
           onClick={() => setGrid()}
         >
           <ViewModule />
@@ -51,7 +44,13 @@ export default function ProductCardList({
       <Grid container alignItems="stretch" spacing={4}>
         {products?.map((product) => {
           return (
-            <Grid item key={product.id} xs={columnSpan}>
+            <Grid
+              item
+              key={product.id}
+              xs={isListLayout ? 12 : 6}
+              sm={isListLayout ? 12 : 6}
+              md={isListLayout ? 12 : 4}
+            >
               <ProductCard product={product} onDelete={onProductDelete} />
             </Grid>
           );
