@@ -1,11 +1,14 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Alert from '@material-ui/lab/Alert';
+import { useState } from 'react';
 import CenterProgressIndicator from '../../src/components/CenterProgressIndicator';
 import PageTitle from '../../src/components/PageTitle';
 import ProductCardList from '../../src/components/products/ProductCardList';
 import useProducts from '../../src/hooks/products';
 import useStore from '../../src/hooks/store';
+import ProductDeleteAlertDialog from '../../src/components/products/ProductDeleteAlertDialog';
+import Product from '../../src/domain/product';
 
 export default function StorePage() {
   const router = useRouter();
@@ -64,7 +67,10 @@ interface ProductsListProps {
 }
 
 function ProductsList({ storeId }: ProductsListProps) {
-  const { data: products, isError, isLoading } = useProducts(storeId);
+  const { data: products, isError, isLoading, mutate } = useProducts(storeId);
+  // TODO: extract the entire logic for the DeleteAlert open/close and product to delete
+  const [deleteAlertOpen, setDeleteAlertOpen] = useState(false);
+  const [productToDelete, setProductToDelete] = useState<Product>();
 
   if (isLoading) {
     return <CenterProgressIndicator />;
@@ -78,5 +84,43 @@ function ProductsList({ storeId }: ProductsListProps) {
     );
   }
 
-  return <ProductCardList products={products!} />;
+  const openDeleteAlert = () => {
+    setDeleteAlertOpen(true);
+  };
+  const closeDeleteAlert = () => {
+    setDeleteAlertOpen(false);
+  };
+
+  const handleDeleteProduct = (product: Product) => {
+    setProductToDelete(product);
+    openDeleteAlert();
+  };
+
+  const handleDeleteAlertClose = (confirmed: boolean) => {
+    if (confirmed && productToDelete) {
+      mutate(async () => {
+        await fetch(`/api/stores/${storeId}/products/${productToDelete.id}`, {
+          method: 'DELETE',
+        });
+
+        return products?.filter((prod) => prod.id !== productToDelete.id);
+      });
+    }
+
+    closeDeleteAlert();
+    setProductToDelete(undefined);
+  };
+
+  return (
+    <>
+      <ProductCardList
+        products={products!}
+        onProductDelete={handleDeleteProduct}
+      />
+      <ProductDeleteAlertDialog
+        open={deleteAlertOpen}
+        handleClose={handleDeleteAlertClose}
+      />
+    </>
+  );
 }

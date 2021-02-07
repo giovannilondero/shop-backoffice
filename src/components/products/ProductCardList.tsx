@@ -6,12 +6,16 @@ import Product from '../../domain/product';
 
 interface ProductCardListProps {
   products: Product[];
+  onProductDelete: (product: Product) => void;
 }
 
 type LayoutGridColumnSpan = 4;
 type LayoutListColumnSpan = 12;
 
-export default function ProductCardList({ products }: ProductCardListProps) {
+export default function ProductCardList({
+  products,
+  onProductDelete,
+}: ProductCardListProps) {
   const layoutGridColumnSpan: LayoutGridColumnSpan = 4;
   const layoutListColumnSpan: LayoutListColumnSpan = 12;
   const [columnSpan, setColumnSpan] = useState<
@@ -48,7 +52,7 @@ export default function ProductCardList({ products }: ProductCardListProps) {
         {products?.map((product) => {
           return (
             <Grid item key={product.id} xs={columnSpan}>
-              <ProductCard product={product} />
+              <ProductCard product={product} onDelete={onProductDelete} />
             </Grid>
           );
         })}

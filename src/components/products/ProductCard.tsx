@@ -12,6 +12,7 @@ import Product from '../../domain/product';
 
 interface ProductCardProps {
   product: Product;
+  onDelete: (product: Product) => void;
 }
 
 const useStyles = makeStyles({
@@ -30,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, onDelete }: ProductCardProps) {
   const classes = useStyles();
   const { data: productData } = product;
 
@@ -63,7 +64,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
       </CardContent>
       <CardActions className={classes.actions}>
-        <Button size="small" color="secondary">
+        <Button
+          size="small"
+          color="secondary"
+          onClick={() => onDelete(product)}
+        >
           <DeleteOutlined fontSize="small" />
           &nbsp; Delete
         </Button>
