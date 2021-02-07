@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Alert from '@material-ui/lab/Alert';
 import StoreCard from '../src/components/stores/StoreCard';
 import PageTitle from '../src/components/PageTitle';
 import useStores from '../src/hooks/stores';
@@ -24,7 +25,9 @@ function StoresPageContent() {
   }
 
   if (isError) {
-    return <strong>Error!!!</strong>;
+    return (
+      <Alert severity="error">An error occured while loading stores!</Alert>
+    );
   }
 
   return (

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Alert from '@material-ui/lab/Alert';
 import CenterProgressIndicator from '../../src/components/CenterProgressIndicator';
 import PageTitle from '../../src/components/PageTitle';
 import ProductCardList from '../../src/components/products/ProductCardList';
@@ -37,7 +38,11 @@ function StorePageContent({ storeId }: StorePageContentProps) {
   }
 
   if (isError) {
-    return <strong>Error!!!</strong>;
+    return (
+      <Alert severity="error">
+        An error occured while loading store details!
+      </Alert>
+    );
   }
 
   return (
@@ -66,7 +71,11 @@ function ProductsList({ storeId }: ProductsListProps) {
   }
 
   if (isError) {
-    return <strong>Error!!!</strong>;
+    return (
+      <Alert severity="error">
+        An error occured while loading store products!
+      </Alert>
+    );
   }
 
   return <ProductCardList products={products!} />;
