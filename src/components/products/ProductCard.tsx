@@ -8,7 +8,7 @@ import {
   Box,
 } from '@material-ui/core';
 import { DeleteOutlined } from '@material-ui/icons';
-import Product from '../domain/product';
+import Product from '../../domain/product';
 
 interface ProductCardProps {
   product: Product;

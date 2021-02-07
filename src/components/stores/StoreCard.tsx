@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import Link from 'next/link';
-import Store from '../domain/store';
+import Store from '../../domain/store';
 
 interface StoreCardProps {
   to?: string;

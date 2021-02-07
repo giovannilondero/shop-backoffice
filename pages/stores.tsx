@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import StoreCard from '../src/components/StoreCard';
+import StoreCard from '../src/components/stores/StoreCard';
 import PageTitle from '../src/components/PageTitle';
 import useStores from '../src/hooks/stores';
 import CenterProgressIndicator from '../src/components/CenterProgressIndicator';

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import CenterProgressIndicator from '../../src/components/CenterProgressIndicator';
 import PageTitle from '../../src/components/PageTitle';
-import ProductCardList from '../../src/components/ProductCardList';
+import ProductCardList from '../../src/components/products/ProductCardList';
 import useProducts from '../../src/hooks/products';
 import useStore from '../../src/hooks/store';
 

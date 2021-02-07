@@ -1,8 +1,8 @@
-import { Box, ButtonGroup, Grid, IconButton } from '@material-ui/core';
+import { Box, Grid, IconButton } from '@material-ui/core';
 import { useState } from 'react';
 import { ViewList, ViewModule } from '@material-ui/icons';
 import ProductCard from './ProductCard';
-import Product from '../domain/product';
+import Product from '../../domain/product';
 
 interface ProductCardListProps {
   products: Product[];
