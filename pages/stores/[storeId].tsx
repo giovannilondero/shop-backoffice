@@ -5,6 +5,7 @@ import CenterProgressIndicator from '../../src/components/CenterProgressIndicato
 import PageTitle from '../../src/components/PageTitle';
 import useStore from '../../src/hooks/store';
 import ProductsList from '../../src/components/products/ProductsList';
+import StoreDetails from '../../src/components/stores/StoreDetails';
 
 export default function StorePage() {
   const router = useRouter();
@@ -44,14 +45,19 @@ function StorePageContent({ storeId }: StorePageContentProps) {
     );
   }
 
+  if (!store) {
+    return <Alert severity="error">Store not found!</Alert>;
+  }
+
   return (
     <>
       <Head>
-        <title key="title">{store?.name} | Shop Backoffice</title>
+        <title key="title">{store.name} | Shop Backoffice</title>
       </Head>
 
       <main>
-        <PageTitle>{store?.name}</PageTitle>
+        <PageTitle>{store.name}</PageTitle>
+        <StoreDetails store={store} />
         <ProductsList storeId={storeId as string} />
       </main>
     </>
