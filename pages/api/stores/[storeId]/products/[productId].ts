@@ -21,15 +21,11 @@ export default async (
       }
       break;
     case 'DELETE':
-      {
-        const response = await fetch(requestURL, {
-          method,
-        });
+      await fetch(requestURL, {
+        method,
+      });
 
-        console.log('Deletion response', response);
-
-        res.status(200).json({});
-      }
+      res.status(200).json({});
       break;
     default:
       res.setHeader('Allow', ['GET', 'DELETE']);
