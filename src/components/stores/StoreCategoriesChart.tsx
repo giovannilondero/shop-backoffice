@@ -25,7 +25,7 @@ export default function StoreCategoriesChart({
     new Chart(context, {
       data: {
         labels,
-        datasets: [{ data: datasets }],
+        datasets: [{ data: datasets, hoverBackgroundColor: '#f00' }],
       },
       type: 'polarArea',
     });
