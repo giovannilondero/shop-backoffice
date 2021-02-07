@@ -19,7 +19,7 @@ export default function StorePage() {
       {storeId ? (
         <StorePageContent storeId={storeId as string} />
       ) : (
-        <span>Loading...</span>
+        <CenterProgressIndicator />
       )}
     </>
   );

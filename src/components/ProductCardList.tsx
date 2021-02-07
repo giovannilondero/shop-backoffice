@@ -29,20 +29,20 @@ export default function ProductCardList({ products }: ProductCardListProps) {
   return (
     <section>
       <Box mb={2}>
-        <ButtonGroup variant="text" aria-label="Products layout button group">
-          <IconButton
-            color={columnSpan === layoutListColumnSpan ? 'primary' : 'default'}
-            onClick={() => setList()}
-          >
-            <ViewList />
-          </IconButton>
-          <IconButton
-            color={columnSpan === layoutGridColumnSpan ? 'primary' : 'default'}
-            onClick={() => setGrid()}
-          >
-            <ViewModule />
-          </IconButton>
-        </ButtonGroup>
+        <IconButton
+          aria-label="Set list layout"
+          color={columnSpan === layoutListColumnSpan ? 'primary' : 'default'}
+          onClick={() => setList()}
+        >
+          <ViewList />
+        </IconButton>
+        <IconButton
+          aria-label="Set grid layout"
+          color={columnSpan === layoutGridColumnSpan ? 'primary' : 'default'}
+          onClick={() => setGrid()}
+        >
+          <ViewModule />
+        </IconButton>
       </Box>
       <Grid container alignItems="stretch" spacing={4}>
         {products?.map((product) => {
