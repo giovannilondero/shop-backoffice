@@ -1,9 +1,8 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import CenterProgressIndicator from '../../src/components/CenterProgressIndicator';
-
 import PageTitle from '../../src/components/PageTitle';
+import ProductCardList from '../../src/components/ProductCardList';
 import useProducts from '../../src/hooks/products';
 import useStore from '../../src/hooks/store';
 
@@ -70,25 +69,5 @@ function ProductsList({ storeId }: ProductsListProps) {
     return <strong>Error!!!</strong>;
   }
 
-  return (
-    <ul>
-      {products?.map((product) => (
-        <li key={product.id}>
-          <Link href={`/stores/${storeId}/${product.id}`}>
-            <a>
-              {product.data.title}
-              <br />
-              {product.data.price}
-              <br />
-              {product.data.employee}
-              <br />
-              {product.data.category}
-              <br />
-              {product.data.description}
-            </a>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
+  return <ProductCardList products={products!} />;
 }
