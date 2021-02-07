@@ -7,6 +7,7 @@ import {
   makeStyles,
   Box,
 } from '@material-ui/core';
+import { DeleteOutlined } from '@material-ui/icons';
 import Product from '../domain/product';
 
 interface ProductCardProps {
@@ -15,10 +16,11 @@ interface ProductCardProps {
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 500,
+    maxWidth: 600,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    margin: '0 auto',
   },
   description: {
     marginTop: 12,
@@ -62,7 +64,8 @@ export default function ProductCard({ product }: ProductCardProps) {
       </CardContent>
       <CardActions className={classes.actions}>
         <Button size="small" color="secondary">
-          Delete
+          <DeleteOutlined fontSize="small" />
+          &nbsp; Delete
         </Button>
       </CardActions>
     </Card>
