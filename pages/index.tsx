@@ -11,7 +11,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <>
       <Head>
         <title>Shop Backoffice</title>
         {/* TODO: change favicon */}
@@ -24,6 +24,6 @@ export default function Home() {
       </Head>
 
       <CenterProgressIndicator />
-    </div>
+    </>
   );
 }
